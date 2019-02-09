@@ -33,6 +33,7 @@ body > * {
     
 }
 
+
  /* ヘッダー */
 header {
     grid-row: head;
@@ -86,7 +87,7 @@ figure.hero img {
     position: relative; 
 }
 /* タイトル */
-h1 {
+.top h1 {
     grid-row: title;
     justify-self: center;
     align-self: center;
@@ -99,12 +100,12 @@ h1 {
     font-family: 'Raleway',sans-serif;
 }
 /* サブタイトル */
-p {
+.top p {
     grid-row: sub;
     text-align: center;
 }
 
-p a {
+.top p a {
     color: #ffffff;
     text-decoration: none;
     border: solid 1px #ffffff;
@@ -114,14 +115,15 @@ p a {
     border-radius: 10px;
     background-color: rgba(85,93,107,0.5);
 }
-p a:hover {
+.top p a:hover {
     background-color: #ef9504;
 }
-p img {
+.top p img {
     width: 250px;
 }
-/* 記事一覧 */
-section{
+/* 記事一覧 
+＆記事の注目記事メニュー*/
+section, aside a{
     grid-row: recent;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -134,11 +136,11 @@ section a {
     text-decoration: none;
 }
 
-section a:hover {
+section a:hover, aside a:hover {
     text-decoration: underline;
 }
 
-section h3 {
+section h3,aside h3{
     font-size: 14px;
 }
 
@@ -166,3 +168,203 @@ body::after {
     grid-row: foot;
     z-index: -1;
 }
+
+/* 記事ページ */
+.post {
+    grid-template-rows: 
+                [head] 100px
+                [kiji] auto
+                [submenu] auto
+                [foot] 100px;
+}
+/* 記事ページ 記事*/
+.post article {
+    grid-row: kiji;
+}
+
+.post article > * {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: block;
+}
+.post article p {
+    line-height: 2;
+}
+/* 記事ページ：バー */
+.post::before {
+    content: '';
+    background: #eeeeee;
+    height: 2px;
+    grid-column: 1 / -1;
+    grid-row: kiji;
+}
+
+/* 記事ページ */
+.fa-clock {
+    color: #888888;
+    margin-right: 5px;
+}
+/* 記事ページ：サブメニュー */
+.post div {
+    grid-row: submenu;
+}
+
+aside {
+    border:solid 1px #dddddd;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+aside h2 {
+    border-bottom: solid 1px #dddddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    color: #888888;
+    font-weight: normal;
+    font-family: 'Railway', sans-serif;
+}
+
+aside p {
+    font-size: 14px;
+}
+
+aside:first-child img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+/* サイトについて：ページ */
+table {
+    border-collapse: collapse;
+}
+th ,td {
+    border: solid 1px #cccccc;
+    padding: 20px;
+}
+th {
+    width: 4em;
+    text-align: left;
+    background-color: #555d6b;
+    color: #ffffff;
+}
+td {
+    background-color: #e8eef9;
+}
+
+/* お問い合わせページ　 */
+form p {
+    margin-bottom: 20px;
+
+}
+
+input, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+textarea {
+    height: 120px;
+}
+input[type="submit"] {
+    background-color: #ffaa00;
+    border: none;
+    -webkit-appearance: none;
+}
+/* ====PC版の設定==== */
+@media(min-width: 768px) {
+
+    /* PC版お問い合わせページ */
+    input[typ="submit"] {
+        width: 250px;
+    }
+    /* PC版：ページ全体の設定 */ 
+body {
+    grid-template-columns: 
+                    0.2fr repeat(6,1fr) 0.2fr;
+    grid-column-gap: 5%;
+    column-gap: 5%;
+    grid-template-rows: 
+                    [head] 100px
+                    [title sub] auto
+                    [recent] auto
+                    [foot] 100px;
+}
+
+/* PC版：ヒーローイメージ */
+figure.hero {
+    grid-row: title;
+    margin-top: -20px;
+
+}
+/* PC版：タイトル */
+.top h1 {
+    grid-column: 2 / span 3;
+    max-width: 460px;
+}
+
+/* PC版：サブタイトル */ 
+.top p {
+    grid-column: 5 / span 3;
+    align-self: center;
+}
+.top p img {
+    width: 80%;
+    max-width: 460px;   
+}
+/* PC版：ヘッダー */
+header {
+    justify-self: start;
+}
+/* PC版：ナビゲーションメニュー */
+nav {
+    justify-self: end;
+    align-self: center;
+}
+
+
+/* PC版：記事一覧 */
+section{
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px;
+    column-gap: 20px;
+}
+/* PC版：記事ページ一覧 */
+.post {
+    grid-template-rows: 
+                [head] 100px
+                [kiji submenu] auto
+                [foot] 100px;
+}
+/* PC版：記事ページ */
+.post article {
+    grid-column: 2 / span 4;
+}
+
+.post article h1 {
+    font-size: 42px;
+}
+
+.post article p {
+    font-size: 18px;
+}
+
+/* PC版：記事ページ：サブメニュー */
+.post div {
+    grid-column: 6 / span 2;
+}
+/* PC版：記事ページ：バー */
+.post::before {
+    margin-top: 20px;
+}
+}
+/* =====PC版の設定ここまで==== */
